@@ -1,0 +1,73 @@
+{
+  "name": "草纸",
+  "header": {
+    "description": "双非二本新工科大一新生，低技术力 vibe coder。",
+    "born": "生于河南省",
+    "home": "长于重庆市",
+    "location": "暂居福建省",
+    "education": "三明学院",
+    "major": "网络空间安全",
+    "zh-CN": "普通话 [母语，二甲]",
+    "en-US": "英语 [中级，B1]",
+    "railTransitEnthusiast": "轨道交通爱好者",
+    "flightEnthusiast": "半吊子飞友",
+    "ham": "业余无线电 A 证 / BG8LYE",
+    "photography": "随便拍拍",
+    "geo": "地理高考生",
+    "furry": "当心福瑞控！",
+    "beento": "已点亮地区"
+  },
+  "henan": {
+    "name": "河南省",
+    "places": "[郑州市/平顶山市/洛阳市/开封市/禹州市/鹤壁市/安阳市]"
+  },
+  "chongqing": {
+    "name": "重庆市",
+    "places": "[渝中区/沙坪坝区/渝北区/江北区/九龙坡区/南岸区/大渡口区/巴南区/北碚区/合川区/铜梁区]"
+  },
+  "sichuan": {
+    "name": "四川省",
+    "places": "[广安市/南充市阆中市]"
+  },
+  "shandong": {
+    "name": "山东省",
+    "places": "[济南市/青岛市/日照市]"
+  },
+  "shaanxi": {
+    "name": "陕西省",
+    "places": "[汉中市]"
+  },
+  "beijing": {
+    "name": "北京市",
+    "places": "[东城区/西城区/海淀区/丰台区/大兴区]"
+  },
+  "hubei": {
+    "name": "湖北省",
+    "places": "[武汉市]"
+  },
+  "shanghai": {
+    "name": "上海市",
+    "places": "[闵行区/黄浦区/杨浦区/静安区/徐汇区/浦东新区]"
+  },
+  "fujian": {
+    "name": "福建省",
+    "places": "[三明市/福州市]"
+  },
+  "guangdong": {
+    "name": "广东省",
+    "places": "[深圳市/东莞市]"
+  },
+  "hksar": {
+    "name": "香港特别行政区",
+    "places": "[中西区/湾仔区/油尖旺区/九龙城区/北区]"
+  },
+  "common": {
+    "switchLanguage": "切换语言"
+  },
+  "theme": {
+    "toggle": "切换主题",
+    "auto": "自动",
+    "light": "亮色",
+    "dark": "暗色"
+  }
+}

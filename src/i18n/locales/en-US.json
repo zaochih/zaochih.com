@@ -1,0 +1,73 @@
+{
+  "name": "Zaochih",
+  "header": {
+    "description": "First-year undergraduate in engineering from a non-prestigious university, a vibe coder with low technical skills.",
+    "born": "Born in Henan, P.R. China",
+    "home": "Grew up in Chongqing, P.R. China",
+    "location": "Fujian, P.R. China",
+    "education": "Sanming University",
+    "major": "Cyberspace Security",
+    "zh-CN": "Mandarin [Native, Grade 2 Level A]",
+    "en-US": "English [Intermediate, B1]",
+    "railTransitEnthusiast": "Rail Transit Enthusiast",
+    "flightEnthusiast": "Semi-pro Flight Enthusiast",
+    "ham": "Amateur Radio Callsign BG8LYE",
+    "photography": "Casual Photographer",
+    "geo": "Formerly? Geography Lover",
+    "furry": "Furry",
+    "beento": "Regions unlocked"
+  },
+  "henan": {
+    "name": "Henan, P.R. China",
+    "places": "[Zhengzhou/Pingdingshan/Luoyang/Kaifeng/Yuzhou/Hebi/Anyang]"
+  },
+  "chongqing": {
+    "name": "Chongqing, P.R. China",
+    "places": "[Yuzhong/Shapingba/Yubei/Jiangbei/Jiulongpo/Nan'an/Dadukou/Banan/Beibei/Hechuan/Tongliang]"
+  },
+  "sichuan": {
+    "name": "Sichuan, P.R. China",
+    "places": "[Guang'an/Nanchong/Langzhong]"
+  },
+  "shandong": {
+    "name": "Shandong, P.R. China",
+    "places": "[Jinan/Qingdao/Rizhao]"
+  },
+  "shaanxi": {
+    "name": "Shaanxi, P.R. China",
+    "places": "[Hanzhong]"
+  },
+  "beijing": {
+    "name": "Beijing, P.R. China",
+    "places": "[Dongcheng/Xicheng/Haidian/Fengtai/Daxing]"
+  },
+  "hubei": {
+    "name": "Hubei, P.R. China",
+    "places": "[Wuhan]"
+  },
+  "shanghai": {
+    "name": "Shanghai, P.R. China",
+    "places": "[Minhang/Huangpu/Yangpu/Jing'an/Xuhui/Pudong]"
+  },
+  "fujian": {
+    "name": "Fujian, P.R. China",
+    "places": "[Sanming/Fuzhou]"
+  },
+  "guangdong": {
+    "name": "Guangdong, P.R. China",
+    "places": "[Shenzhen/Dongguan]"
+  },
+  "hksar": {
+    "name": "Hong Kong SAR, P.R. China",
+    "places": "[Central and Western/Wan Chai/Yau Tsim Mong/Kowloon City/North]"
+  },
+  "common": {
+    "switchLanguage": "Switch Language"
+  },
+  "theme": {
+    "toggle": "Toggle Theme",
+    "auto": "Auto",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

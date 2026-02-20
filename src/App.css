@@ -1,0 +1,17 @@
+:root {
+    text-autospace: normal;
+}
+
+.container {
+    margin-block: 2rem;
+    margin-inline: max(2rem, calc((100vw - 800px) / 2));
+    max-width: 800px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.container * {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}

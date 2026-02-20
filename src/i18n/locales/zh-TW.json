@@ -1,0 +1,73 @@
+{
+  "name": "草紙",
+  "header": {
+    "description": "不知名本科新工科大一新生，低技術力 vibe coder。",
+    "born": "生於河南",
+    "home": "長於重慶",
+    "location": "福建",
+    "education": "三明學院",
+    "major": "網絡空間安全",
+    "zh-CN": "普通話 [母語，二甲]",
+    "en-US": "英語 [中級，B1]",
+    "railTransitEnthusiast": "軌道交通愛好者",
+    "flightEnthusiast": "半吊子飛友",
+    "ham": "業餘無線電台呼號 BG8LYE",
+    "photography": "隨便拍拍",
+    "geo": "地理高考生",
+    "furry": "當心獸人控！",
+    "beento": "已點亮地區"
+  },
+  "henan": {
+    "name": "河南",
+    "places": "[鄭州/平頂山/洛陽/開封/禹州/鶴壁/安陽]"
+  },
+  "chongqing": {
+    "name": "重慶",
+    "places": "[渝中/沙坪壩/渝北/江北/九龍坡/南岸/大渡口/巴南/北碚/合川/銅梁]"
+  },
+  "sichuan": {
+    "name": "四川",
+    "places": "[廣安/南充/閬中]"
+  },
+  "shandong": {
+    "name": "山東",
+    "places": "[濟南/青島/日照]"
+  },
+  "shaanxi": {
+    "name": "陝西",
+    "places": "[漢中]"
+  },
+  "beijing": {
+    "name": "北京",
+    "places": "[東城/西城/海淀/豐台/大興]"
+  },
+  "hubei": {
+    "name": "湖北",
+    "places": "[武漢]"
+  },
+  "shanghai": {
+    "name": "上海",
+    "places": "[閔行/黃浦/楊浦/靜安/徐匯/浦東]"
+  },
+  "fujian": {
+    "name": "福建",
+    "places": "[三明/福州]"
+  },
+  "guangdong": {
+    "name": "廣東",
+    "places": "[深圳/東莞]"
+  },
+  "hksar": {
+    "name": "香港特別行政區",
+    "places": "[中西/灣仔/油尖旺/九龍城/北]"
+  },
+  "common": {
+    "switchLanguage": "切換語言"
+  },
+  "theme": {
+    "toggle": "切換主題",
+    "auto": "自動",
+    "light": "亮色",
+    "dark": "暗色"
+  }
+}
