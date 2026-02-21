@@ -69,5 +69,8 @@
     "auto": "Auto",
     "light": "Light",
     "dark": "Dark"
+  },
+  "bottom": {
+    "text": "Made with LOVE, React and Fluent UI by Zaochih Li. Source code on <Link>GitHub</Link>."
   }
 }

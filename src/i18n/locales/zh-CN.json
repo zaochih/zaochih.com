@@ -69,5 +69,8 @@
     "auto": "自动",
     "light": "亮色",
     "dark": "暗色"
+  },
+  "bottom": {
+    "text": "由草纸用 LOVE、React 和 Fluent UI 制作。源代码于 <Link>GitHub</Link>。"
   }
 }
