@@ -100,6 +100,35 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
     fontSize: tokens.fontSizeBase200
   },
+  lgbtqBadge: {
+    fontWeight: tokens.fontWeightSemibold,
+  },
+  lgbtqChars: {
+    display: 'inline-flex',
+    gap: '0.5px',
+    filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.15))',
+  },
+  lgbtqChar: {
+    lineHeight: 1,
+  },
+  lgbtqRed: {
+    color: '#E53935',
+  },
+  lgbtqOrange: {
+    color: '#F57C00',
+  },
+  lgbtqYellow: {
+    color: '#FBC02D',
+  },
+  lgbtqGreen: {
+    color: '#388E3C',
+  },
+  lgbtqBlue: {
+    color: '#1976D2',
+  },
+  lgbtqPurple: {
+    color: '#7B1FA2',
+  },
 });
 
 const ThemeToggle: React.FC = () => {
@@ -229,6 +258,23 @@ const App: React.FC = () => {
             </Badge>
             <Badge appearance="ghost" shape="rounded" size="medium" icon={<AnimalPawPrintRegular />} color="danger">
               {t('header.furry')}
+            </Badge>
+            {/* LGBTQ+ */}
+            <Badge appearance="ghost" shape="rounded" size="medium" className={styles.lgbtqBadge}>
+              <span className={styles.lgbtqChars} aria-label="LGBTQ+">
+                {[
+                  { char: 'L', colorClass: styles.lgbtqRed },
+                  { char: 'G', colorClass: styles.lgbtqOrange },
+                  { char: 'B', colorClass: styles.lgbtqYellow },
+                  { char: 'T', colorClass: styles.lgbtqGreen },
+                  { char: 'Q', colorClass: styles.lgbtqBlue },
+                  { char: '+', colorClass: styles.lgbtqPurple },
+                ].map(({ char, colorClass }) => (
+                  <span key={char} className={`${styles.lgbtqChar} ${colorClass}`}>
+                    {char}
+                  </span>
+                ))}
+              </span>
             </Badge>
           </div>
 
