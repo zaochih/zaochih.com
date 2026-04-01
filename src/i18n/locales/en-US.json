@@ -23,7 +23,7 @@
   },
   "chongqing": {
     "name": "Chongqing, P.R. China",
-    "places": "[Yuzhong/Shapingba/Yubei/Jiangbei/Jiulongpo/Nan'an/Dadukou/Banan/Beibei/Hechuan/Tongliang]"
+    "places": "[Yuzhong/Shapingba/Liangjiang/Jiulongpo/Nan'an/Dadukou/Banan/Beibei/Hechuan/Tongliang]"
   },
   "sichuan": {
     "name": "Sichuan, P.R. China",
@@ -51,7 +51,7 @@
   },
   "fujian": {
     "name": "Fujian, P.R. China",
-    "places": "[Sanming/Fuzhou]"
+    "places": "[Sanming/Fuzhou/Xiamen]"
   },
   "guangdong": {
     "name": "Guangdong, P.R. China",
