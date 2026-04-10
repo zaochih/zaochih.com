@@ -260,7 +260,7 @@ const App: React.FC = () => {
               {t('header.furry')}
             </Badge>
             {/* LGBTQ+ */}
-            <Badge appearance="ghost" shape="rounded" size="medium" className={styles.lgbtqBadge}>
+            <Badge appearance="tint" color="informative" shape="rounded" size="medium" className={styles.lgbtqBadge}>
               <span className={styles.lgbtqChars} aria-label="LGBTQ+">
                 {[
                   { char: 'L', colorClass: styles.lgbtqRed },

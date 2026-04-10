@@ -78,7 +78,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const theme = effectiveMode === 'dark' ? customDarkTheme : customLightTheme;
 
   return (
-    <ThemeContext.Provider value={{ mode, theme, cycleMode, setMode: handleSetMode }}>
+    <ThemeContext.Provider value={{ mode, effectiveMode, theme, cycleMode, setMode: handleSetMode }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -2,12 +2,129 @@
     text-autospace: normal;
 }
 
+body {
+    margin: 0;
+    background-color: #0f1d2f;
+    background-image:
+        linear-gradient(180deg, rgb(10 20 36 / 12%), rgb(8 14 24 / 34%)),
+        url('../public/DSC_3473-1856.webp');
+    background-image:
+        linear-gradient(180deg, rgb(10 20 36 / 12%), rgb(8 14 24 / 34%)),
+        url('../public/DSC_3473-1856.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+@media (min-width: 1200px) {
+    body {
+        background-image:
+            linear-gradient(180deg, rgb(10 20 36 / 10%), rgb(8 14 24 / 30%)),
+            url('../public/DSC_3473-2784.webp');
+        background-image:
+            linear-gradient(180deg, rgb(10 20 36 / 10%), rgb(8 14 24 / 30%)),
+            url('../public/DSC_3473-2784.avif');
+    }
+}
+
+@media (min-width: 1800px) {
+    body {
+        background-image:
+            linear-gradient(180deg, rgb(10 20 36 / 8%), rgb(8 14 24 / 26%)),
+            url('../public/DSC_3473-5568.webp');
+        background-image:
+            linear-gradient(180deg, rgb(10 20 36 / 8%), rgb(8 14 24 / 26%)),
+            url('../public/DSC_3473-5568.avif');
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
 .container {
+    position: relative;
+    overflow: hidden;
     margin-block: 2rem;
     margin-inline: max(2rem, calc((100vw - 800px) / 2));
     max-width: 800px;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(255 255 255 / 42%);
+    background:
+        linear-gradient(140deg, rgb(255 255 255 / 70%), rgb(241 247 255 / 62%)),
+        linear-gradient(220deg, rgb(121 173 255 / 16%), rgb(255 173 140 / 8%) 44%, rgb(255 255 255 / 5%));
+    box-shadow:
+        0 20px 48px rgb(2 10 24 / 24%),
+        inset 0 1px 0 rgb(255 255 255 / 52%);
+    -webkit-backdrop-filter: blur(18px) saturate(124%);
+    backdrop-filter: blur(18px) saturate(124%);
+    color: rgb(11 20 34 / 96%);
     word-break: break-word;
     overflow-wrap: break-word;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        linear-gradient(155deg, rgb(255 255 255 / 36%) 0%, rgb(255 255 255 / 8%) 45%, rgb(255 255 255 / 16%) 100%),
+        radial-gradient(120% 95% at 0% 0%, rgb(160 202 255 / 20%), transparent 54%);
+    opacity: 0.3;
+}
+
+:root[data-theme='dark'] .container {
+    border: 1px solid rgb(190 220 255 / 24%);
+    background:
+        linear-gradient(140deg, rgb(27 42 64 / 58%), rgb(17 30 48 / 50%)),
+        linear-gradient(220deg, rgb(100 150 248 / 18%), rgb(255 120 142 / 9%) 46%, rgb(15 30 50 / 10%));
+    box-shadow:
+        0 22px 52px rgb(0 0 0 / 40%),
+        inset 0 1px 0 rgb(255 255 255 / 16%);
+    color: rgb(234 242 252 / 94%);
+}
+
+:root[data-theme='dark'] .container::before {
+    background:
+        linear-gradient(155deg, rgb(215 236 255 / 14%) 0%, rgb(255 255 255 / 2%) 48%, rgb(185 219 255 / 8%) 100%),
+        radial-gradient(120% 95% at 0% 0%, rgb(119 172 255 / 16%), transparent 55%);
+    opacity: 0.28;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+.container > .fui-Card {
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+    .container {
+        background: rgb(245 249 254 / 86%);
+    }
+
+    :root[data-theme='dark'] .container {
+        background: rgb(14 26 43 / 78%);
+    }
+}
+
+@media (max-width: 720px) {
+    .container {
+        margin-block: 1rem;
+        margin-inline: 1rem;
+        padding: 10px;
+        border-radius: 8px;
+    }
 }
 
 .container * {
