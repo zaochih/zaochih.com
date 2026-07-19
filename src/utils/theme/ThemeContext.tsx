@@ -5,7 +5,6 @@ export type ThemeMode = 'auto' | 'light' | 'dark';
 
 export interface ThemeContextValue {
   mode: ThemeMode;
-  effectiveMode: ThemeMode;
   theme: Theme;
   cycleMode: () => void;
   setMode: (mode: ThemeMode) => void;
