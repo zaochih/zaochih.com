@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import ClientRouter from 'astro/components/ClientRouter.astro';
+import type { Locale } from '../data';
+
+interface Props {
+  locale: Locale;
+  title: string;
+}
+
+const { locale, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <ClientRouter fallback="swap" />
+    <link
+      rel="icon"
+      href="https://sdn.licaoz.com/avatar/3f84ccfc63c55dcf638cad909c5bbdcc?s=200&d=mm&r=g"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('ui.themeMode');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch {
+          // localStorage unavailable (privacy mode, disabled storage) — fall back to system theme
+        }
+      })();
+    </script>
+  </head>
+  <body class="font-sans">
+    <div class="mx-auto max-w-[680px]">
+      <slot />
+    </div>
+  </body>
+</html>

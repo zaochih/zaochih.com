@@ -1,0 +1,59 @@
+---
+import { parseRichText } from '../utils/richText';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const tokens = parseRichText(text);
+
+const RAINBOW_COLORS = [
+  '#e53935', // red
+  '#f57c00', // orange
+  '#fbc02d', // yellow
+  '#388e3c', // green
+  '#1976d2', // blue
+  '#7b1fa2', // purple
+];
+---
+
+{tokens.map((token) => {
+  if (token.kind === 'bold') {
+    return (
+      <strong class="border-b border-border-strong font-medium text-fg">
+        {token.text}
+      </strong>
+    );
+  }
+  if (token.kind === 'code') {
+    return (
+      <span class="ml-1.5 inline-block align-middle rounded border border-border-strong px-1 py-px font-mono text-[10px] leading-none text-fg-subtle">
+        {token.text}
+      </span>
+    );
+  }
+  if (token.kind === 'rainbow') {
+    return (
+      <span
+        class="inline-flex"
+        style="filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.15))"
+        aria-label={token.text}
+      >
+        {[...token.text].map((char, i) => (
+          <span style={`color: ${RAINBOW_COLORS[i % RAINBOW_COLORS.length]}`}>
+            {char}
+          </span>
+        ))}
+      </span>
+    );
+  }
+  if (token.kind === 'link') {
+    return (
+      <a href={token.href} target="_blank" rel="nofollow" class="rich-link">
+        {token.text}
+      </a>
+    );
+  }
+  return token.text;
+})}

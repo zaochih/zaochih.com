@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import Profile from '../../components/Profile.astro';
+import { profile } from '../../data';
+
+const locale = 'en-US' as const;
+---
+
+<Base locale={locale} title={profile[locale].documentTitle}>
+  <Profile locale={locale} />
+</Base>

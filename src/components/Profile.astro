@@ -1,0 +1,137 @@
+---
+import { profile, type Locale } from '../data';
+import RichText from './RichText.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LangToggle from './LangToggle.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const p = profile[locale];
+
+const themeToggleLabel: Record<Locale, string> = {
+  'zh-CN': '切换主题',
+  'zh-TW': '切換主題',
+  'en-US': 'Toggle theme',
+};
+const langToggleLabel: Record<Locale, string> = {
+  'zh-CN': '切换语言',
+  'zh-TW': '切換語言',
+  'en-US': 'Switch language',
+};
+---
+
+<div class="px-4.5 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-16">
+  <div class="mb-12 flex items-center justify-between">
+    <span class="bg-[#0057b8] px-2 py-1 font-sans text-sm font-medium text-white">
+      {p.handle}
+    </span>
+    <div class="flex items-center gap-0.5">
+      <LangToggle locale={locale} label={langToggleLabel[locale]} />
+      <ThemeToggle label={themeToggleLabel[locale]} />
+    </div>
+  </div>
+
+  <div
+    class:list={[
+      'text-[19px] leading-[1.65] font-medium text-fg sm:text-[22px]',
+      locale === 'en-US' && 'max-w-120',
+    ]}
+  >
+    {p.tagline}
+  </div>
+
+  <div
+    class:list={[
+      'mt-7 text-[15.5px] leading-[1.9] text-fg-muted',
+      locale === 'en-US' && 'max-w-120',
+    ]}
+  >
+    <RichText text={p.bio.template} />
+  </div>
+
+  <div class="mt-7 flex flex-wrap items-center gap-2.5 text-[14.5px]">
+    {p.contact.map((item, i) => (
+      <>
+        {i > 0 && <span class="text-border-strong">/</span>}
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={item.alt}
+          class="inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-fg"
+        >
+          {item.icon && <Icon name={item.icon} class="h-3.5 w-auto" />}
+          {item.name && (
+            <span class="rounded border border-border-strong px-1 py-px font-mono text-[10px] leading-none text-fg-subtle">
+              {item.name}
+            </span>
+          )}
+          <span>{item.text}</span>
+        </a>
+      </>
+    ))}
+  </div>
+</div>
+
+<section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
+  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+    {p.eyebrows.languages}
+  </div>
+  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
+    {p.languages.map((lang, i) => (
+      <>
+        {i > 0 && <span class="text-border-strong">/</span>}
+        <span class="inline-flex items-center gap-1.5">
+          <span>{lang.name}</span>
+          <span class="text-border-strong">·</span>
+          <span>{lang.level}</span>
+        </span>
+      </>
+    ))}
+  </div>
+</section>
+
+<section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
+  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+    {p.eyebrows.tags}
+  </div>
+  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
+    {p.tags.map((tag, i) => (
+      <>
+        {i > 0 && <span class="text-border-strong">/</span>}
+        <span class="inline-flex items-center">
+          <RichText text={tag} />
+        </span>
+      </>
+    ))}
+  </div>
+</section>
+
+<section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
+  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+    {p.eyebrows.beento}
+  </div>
+  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
+    {p.beento.map((region, i) => (
+      <>
+        {i > 0 && <span class="text-border-strong">/</span>}
+        <span>{region}</span>
+      </>
+    ))}
+  </div>
+</section>
+
+<footer class="border-t border-border px-4.5 py-8 pb-14 font-mono text-xs text-fg-subtle sm:px-6">
+  <a
+    href={p.footer.href}
+    target="_blank"
+    rel="noreferrer"
+    class="text-fg-muted hover:text-fg"
+  >
+    {p.footer.text}
+  </a>
+</footer>

@@ -7,8 +7,8 @@
 node_modules
 dist/
 
-# Profile
-.rspack-profile-*/
+# Astro
+.astro/
 
 # IDE
 .vscode/*

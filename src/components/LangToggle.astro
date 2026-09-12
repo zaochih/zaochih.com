@@ -1,0 +1,53 @@
+---
+import { LOCALES, LOCALE_LABELS, type Locale } from '../data';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+  label: string;
+}
+
+const { locale, label } = Astro.props;
+---
+
+<details class="group relative">
+  <summary
+    aria-label={`${label}: ${LOCALE_LABELS[locale]}`}
+    class="flex h-7 cursor-pointer list-none items-center gap-1.5 rounded-md px-2 text-[13px] text-fg-subtle transition-colors select-none hover:bg-bg-muted hover:text-fg [&::-webkit-details-marker]:hidden"
+  >
+    <Icon name="globe" class="h-3.25 w-3.25" />
+    <span>{LOCALE_LABELS[locale]}</span>
+  </summary>
+  <div class="absolute right-0 top-full z-10 mt-1 flex min-w-28 flex-col gap-0.5 rounded-lg border border-border bg-bg p-1 shadow-lg shadow-black/10">
+    {LOCALES.map((l) => (
+      <a
+        href={`/${l}/`}
+        aria-current={l === locale ? 'true' : undefined}
+        class:list={[
+          'rounded px-3 py-1.5 text-[13px] hover:bg-bg-muted hover:text-fg',
+          l === locale ? 'bg-bg-muted text-fg' : 'text-fg-muted',
+        ]}
+      >
+        {LOCALE_LABELS[l]}
+      </a>
+    ))}
+  </div>
+</details>
+
+<script>
+  // Re-query on every click rather than capturing `details` once: this
+  // script's content is identical on every locale page, so Astro's view
+  // transitions only run it a single time (see the comment in
+  // ThemeToggle.astro), and a captured reference would go stale after the
+  // first client-side navigation.
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    for (const details of document.querySelectorAll<HTMLDetailsElement>(
+      'details',
+    )) {
+      if (details.open && !details.contains(target)) {
+        details.open = false;
+      }
+    }
+  });
+</script>

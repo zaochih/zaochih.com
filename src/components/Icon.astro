@@ -1,0 +1,27 @@
+---
+import { ICONS, BRAND_ICONS, type AnyIconName } from '../icons';
+
+interface Props extends astroHTML.JSX.SVGAttributes {
+  name: AnyIconName;
+}
+
+const { name, ...rest } = Astro.props;
+const brand = (
+  BRAND_ICONS as Record<string, (typeof BRAND_ICONS)[keyof typeof BRAND_ICONS]>
+)[name];
+---
+
+{brand ? (
+  <svg viewBox={brand.viewBox} {...rest} set:html={brand.markup} />
+) : (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    {...rest}
+    set:html={ICONS[name as keyof typeof ICONS]}
+  />
+)}

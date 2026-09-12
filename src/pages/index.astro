@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import { LOCALES, LOCALE_LABELS, type Locale } from '../data';
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaochih</title>
+    <script is:inline define:vars={{ LOCALES }}>
+      (function () {
+        const supported = LOCALES;
+        const lang =
+          navigator.language ||
+          (navigator.languages && navigator.languages[0]) ||
+          'en-US';
+        let target = 'en-US';
+        if (lang.startsWith('zh')) {
+          target = /TW|HK|Hant/.test(lang) ? 'zh-TW' : 'zh-CN';
+        }
+        if (supported.indexOf(target) === -1) {
+          target = 'en-US';
+        }
+        window.location.replace('/' + target + '/');
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen items-center justify-center font-sans text-fg">
+    <p class="flex gap-3 text-sm text-fg-muted">
+      {LOCALES.map((l: Locale, i: number) => (
+        <>
+          {i > 0 && <span class="text-border-strong">/</span>}
+          <a href={`/${l}/`} class="hover:text-fg">
+            {LOCALE_LABELS[l]}
+          </a>
+        </>
+      ))}
+    </p>
+  </body>
+</html>
