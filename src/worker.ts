@@ -56,7 +56,15 @@ function rankLanguages(acceptLanguage: string): string[] {
 }
 
 function chineseVariantFor(tag: string): 'zh-CN' | 'zh-TW' {
-  return /TW|HK|Hant/i.test(tag) ? 'zh-TW' : 'zh-CN';
+  // Script subtag (Hans/Hant, or the pre-Vista Windows CHS/CHT codes) is an
+  // explicit signal and wins over the region — e.g. zh-Hans-HK (simplified,
+  // but Hong Kong region) should read as simplified, not get matched on
+  // "HK" and flipped to traditional.
+  if (/Hans|CHS/i.test(tag)) return 'zh-CN';
+  if (/Hant|CHT/i.test(tag)) return 'zh-TW';
+  // No explicit script — fall back to region. TW/HK/MO all read traditional
+  // Chinese; every other zh-<region> (CN, SG, MY, ...) reads simplified.
+  return /TW|HK|MO/i.test(tag) ? 'zh-TW' : 'zh-CN';
 }
 
 // Returns the first ranked tag that actually matches one of our three
