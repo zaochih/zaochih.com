@@ -6,6 +6,10 @@ import { profile } from '../../data';
 const locale = 'zh-TW' as const;
 ---
 
-<Base locale={locale} title={profile[locale].documentTitle}>
+<Base
+  locale={locale}
+  title={profile[locale].documentTitle}
+  description={profile[locale].description}
+>
   <Profile locale={locale} />
 </Base>

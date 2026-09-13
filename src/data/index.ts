@@ -3,6 +3,8 @@ import type { AnyIconName } from '../icons';
 export const LOCALES = ['zh-CN', 'zh-TW', 'en-US'] as const;
 export type Locale = (typeof LOCALES)[number];
 
+export const SITE_URL = 'https://about.zaochih.com';
+
 export const LOCALE_LABELS: Record<Locale, string> = {
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文',
@@ -36,6 +38,8 @@ export interface ContactLink {
 
 export interface ProfileContent {
   documentTitle: string;
+  /** Plain-text summary for <meta name="description">, og:description, twitter:description — no rich-text tags. */
+  description: string;
   handle: string;
   eyebrows: {
     languages: string;
@@ -59,6 +63,8 @@ const footer = {
 export const profile: Record<Locale, ProfileContent> = {
   'zh-CN': {
     documentTitle: '草纸',
+    description:
+      '双非二本新工科大二学生，生于河南、长于重庆、现居福建，就读于三明学院计算机科学与技术专业。',
     handle: '@zaochih',
     eyebrows: {
       languages: '语言',
@@ -126,6 +132,8 @@ export const profile: Record<Locale, ProfileContent> = {
   },
   'zh-TW': {
     documentTitle: '草紙',
+    description:
+      '不知名本科新工科大二學生，生於河南、長於重慶、現居福建，就讀於三明學院資訊工程專業。',
     handle: '@zaochih',
     eyebrows: {
       languages: '語言',
@@ -187,6 +195,8 @@ export const profile: Record<Locale, ProfileContent> = {
   },
   'en-US': {
     documentTitle: 'Zaochih',
+    description:
+      'Second-year engineering undergraduate born in Henan, raised in Chongqing, now based in Fujian, China — studying Computer Science and Technology at Sanming University.',
     handle: '@zaochih',
     eyebrows: {
       languages: 'Languages',

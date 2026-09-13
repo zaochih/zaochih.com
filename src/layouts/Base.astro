@@ -1,14 +1,17 @@
 ---
 import '../styles/global.css';
 import ClientRouter from 'astro/components/ClientRouter.astro';
-import type { Locale } from '../data';
+import { LOCALES, SITE_URL, type Locale } from '../data';
 
 interface Props {
   locale: Locale;
   title: string;
+  description: string;
 }
 
-const { locale, title } = Astro.props;
+const { locale, title, description } = Astro.props;
+const canonicalUrl = `${SITE_URL}/${locale}/`;
+const ogLocale = locale.replace('-', '_');
 ---
 
 <!doctype html>
@@ -17,6 +20,25 @@ const { locale, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {
+      LOCALES.map((l) => (
+        <link rel="alternate" hreflang={l} href={`${SITE_URL}/${l}/`} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@zaochih" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <ClientRouter fallback="swap" />
     <link
       rel="icon"
