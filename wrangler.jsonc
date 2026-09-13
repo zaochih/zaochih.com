@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "about-zaochih",
+  "name": "zaochih-com",
   "compatibility_date": "2026-09-13",
   "main": "src/worker.ts",
   "assets": {
@@ -8,5 +8,11 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "run_worker_first": true
+  },
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
   }
 }
