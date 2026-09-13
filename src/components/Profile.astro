@@ -71,7 +71,7 @@ const siteControlsLabel: Record<Locale, string> = {
           <a
             href={item.href}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener me"
             aria-label={`${item.alt}: ${accessibleText}`}
             class="inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-fg"
           >
@@ -135,7 +135,7 @@ const siteControlsLabel: Record<Locale, string> = {
   <a
     href={p.footer.href}
     target="_blank"
-    rel="noreferrer"
+    rel="noopener"
     class="text-fg-muted hover:text-fg"
   >
     {p.footer.text}
