@@ -22,6 +22,11 @@ const langToggleLabel: Record<Locale, string> = {
   'zh-TW': '切換語言',
   'en-US': 'Switch language',
 };
+const siteControlsLabel: Record<Locale, string> = {
+  'zh-CN': '语言与主题',
+  'zh-TW': '語言與主題',
+  'en-US': 'Language and theme',
+};
 ---
 
 <div class="px-4.5 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-16">
@@ -29,10 +34,13 @@ const langToggleLabel: Record<Locale, string> = {
     <h1 class="bg-[#0057b8] px-2 py-1 font-sans text-sm font-medium text-white">
       {p.handle}
     </h1>
-    <div class="flex items-center gap-0.5">
+    <nav
+      class="flex items-center gap-0.5"
+      aria-label={siteControlsLabel[locale]}
+    >
       <LangToggle locale={locale} label={langToggleLabel[locale]} />
       <ThemeToggle label={themeToggleLabel[locale]} />
-    </div>
+    </nav>
   </div>
 
   <div
