@@ -40,7 +40,8 @@ This is a static personal profile site built with Astro. The project uses:
 
 - `npm run dev` - start the Astro dev server
 - `npm run build` - build the static site to `dist/`
-- `npm run preview` - preview the production build locally
+- `npm run preview` - preview the production build locally (static files only — does not run `src/worker.ts`)
+- `npm run preview:worker` - build, then preview through the actual Cloudflare Worker (`wrangler dev`) — needed to test anything in `src/worker.ts` (host redirects, locale redirects, 404 handling)
 - `npm run lint` - lint with ESLint (`eslint-plugin-astro` + `typescript-eslint`)
 - `npm run format` - format with Prettier
 

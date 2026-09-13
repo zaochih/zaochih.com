@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+import { LOCALES } from '../data';
+
+interface NotFoundContent {
+  message: string;
+  homeLabel: string;
+  homeAriaLabel: string;
+  /** Gloss for the QRU watermark — "I have nothing for you" in the Q-code table. */
+  qruGloss: string;
+}
+
+const content: Record<(typeof LOCALES)[number], NotFoundContent> = {
+  'zh-CN': {
+    message: '这个页面，也被 404 了。',
+    homeLabel: '去 200 的地方',
+    homeAriaLabel: '返回首页',
+    qruGloss: '我没有什么可以给你的。',
+  },
+  'zh-TW': {
+    message: '無可奉告。',
+    homeLabel: '謝謝指教',
+    homeAriaLabel: '返回首頁',
+    qruGloss: '我這裡沒有什麼能給你的。',
+  },
+  'en-US': {
+    message: 'Nothing to see here.',
+    homeLabel: 'Move along',
+    homeAriaLabel: 'Back to the homepage',
+    qruGloss: 'I have nothing for you.',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('ui.themeMode');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch {
+          // localStorage unavailable (privacy mode, disabled storage) — fall back to system theme
+        }
+      })();
+    </script>
+  </head>
+  <body class="font-sans">
+    <main class="relative isolate mx-auto flex min-h-screen max-w-180 flex-col justify-center overflow-hidden px-6 pb-8 sm:pb-10">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute right-6 bottom-8 -z-10 flex flex-col items-end gap-1 select-none sm:bottom-10"
+      >
+        <p class="font-sans text-[7rem] leading-none font-normal text-fg-subtle sm:text-[11rem]">
+          QRU
+        </p>
+        <p class="font-mono text-xs text-fg-subtle sm:text-sm">
+          {LOCALES.map((locale) => (
+            <span lang={locale}>{content[locale].qruGloss}</span>
+          ))}
+        </p>
+      </div>
+      <article class="flex flex-col gap-6">
+        <h1 class="font-mono text-lg text-fg-subtle">404</h1>
+        <ul class="relative z-10 flex flex-col gap-2">
+          {LOCALES.map((locale) => (
+            <li class="text-fg-muted" lang={locale}>
+              {content[locale].message}{' '}
+              <a
+                class="rich-link"
+                href={`/${locale}/`}
+                aria-label={content[locale].homeAriaLabel}
+              >
+                {content[locale].homeLabel} →
+              </a>
+            </li>
+          ))}
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
