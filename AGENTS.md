@@ -18,7 +18,7 @@ This is a static personal profile site built with Astro. The project uses:
 - `src/data/index.ts` - all page content for every locale (tagline, bio, contact, tags, languages, visited regions); edit here for copy changes
 - `src/utils/richText.ts` - parses the small inline-tag syntax (`<b>`, `<code>`, `<a href="…">`, `<rainbow>`) used inside `bio.template` and tag strings
 - `src/icons.ts` - two icon registries: `ICONS` (neutral lucide-derived stroke icons, tinted via `currentColor`) and `BRAND_ICONS` (self-colored brand marks: X/Twitter, LinkedIn)
-- `src/layouts/Base.astro` - HTML shell: head/meta/fonts, `ClientRouter` for view-transition page swaps, theme-flash-prevention script, page container
+- `src/layouts/Base.astro` - HTML shell: head/meta (SEO, Open Graph/Twitter, hreflang), `ClientRouter` for view-transition page swaps, theme-flash-prevention script, page container
 - `src/components/Profile.astro` - renders the whole profile page body for a given locale
 - `src/components/RichText.astro` - renders one `parseRichText` token stream (bold/code/rainbow/link) as markup
 - `src/components/Icon.astro` - renders one icon from either registry in `src/icons.ts`
@@ -69,7 +69,7 @@ This is a static personal profile site built with Astro. The project uses:
 
 - No card containers, no badge walls, no gradients/glows, no emoji
 - Neutral zinc-scale palette; almost no brand/accent color, except the two intentional exceptions: the `@handle` badge (brand blue) and the X/LinkedIn brand marks in the contact row
-- Google Sans Flex for body text (loaded from Google Fonts); per-locale system CJK fonts (PingFang SC/TC, Microsoft YaHei/JhengHei UI) as fallback since Google Sans Flex has no CJK glyphs; system monospace stack for eyebrows/labels — no monospace webfont is loaded, to avoid a second webfont's layout shift
+- Body text font stack leads with `'Google Sans Flex'` but with no `@font-face`/webfont backing it at all — no url() src, no file, no Google Fonts link. It's there only for visitors who happen to have it installed locally; everyone else falls through immediately to the system stack (`-apple-system`/`BlinkMacSystemFont`/`Segoe UI`, per-locale PingFang SC/TC / Microsoft YaHei/JhengHei UI for CJK). A self-hosted webfont (even base64-inlined, with `font-display` tuned every which way) reliably still reflowed text once/if it swapped in — visibly shifting the tagline's line wrap and the contact-row icons — so there is deliberately no async font load of any kind to avoid at all; system monospace stack for eyebrows/labels, same reasoning
 - Every section below the hero (languages/tags/visited regions) reads as the same plain "label / label / label" flowing list — no section is more table-like or boxed than another
 
 ### File Operations
