@@ -25,7 +25,7 @@ export interface LanguageEntry {
 }
 
 export interface ContactLink {
-  /** Short platform label rendered as a subtle chip before the text, e.g. "X". Omit when the text/format is already recognizable (e.g. LinkedIn's `in/`). */
+  /** Screen-reader/reader-mode-only platform label prepended to the text (visually hidden — the icon carries this for sighted users). Needed whenever `text` alone doesn't say which platform it is (e.g. two bare "@handle" entries); omit when the text/format is already self-evident (e.g. LinkedIn's `in/`). */
   name?: string;
   /** Icon rendered before the text/name. Omit when there's no suitable non-brand icon. */
   icon?: AnyIconName;
@@ -90,12 +90,14 @@ export const profile: Record<Locale, ProfileContent> = {
         text: 'hi#zaochih.com',
       },
       {
+        name: 'Twitter',
         icon: 'twitter',
         alt: 'Twitter',
         href: 'https://x.com/zaochih',
         text: '@zaochih',
       },
       {
+        name: 'GitHub',
         icon: 'github',
         alt: 'GitHub',
         href: 'https://github.com/zaochih',
@@ -159,12 +161,14 @@ export const profile: Record<Locale, ProfileContent> = {
         text: 'hi#zaochih.com',
       },
       {
+        name: 'Twitter',
         icon: 'twitter',
         alt: 'Twitter',
         href: 'https://x.com/zaochih',
         text: '@zaochih',
       },
       {
+        name: 'GitHub',
         icon: 'github',
         alt: 'GitHub',
         href: 'https://github.com/zaochih',
@@ -229,12 +233,14 @@ export const profile: Record<Locale, ProfileContent> = {
         text: 'hi#zaochih.com',
       },
       {
+        name: 'Twitter',
         icon: 'twitter',
         alt: 'Twitter',
         href: 'https://x.com/zaochih',
         text: '@zaochih',
       },
       {
+        name: 'GitHub',
         icon: 'github',
         alt: 'GitHub',
         href: 'https://github.com/zaochih',

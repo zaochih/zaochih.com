@@ -35,12 +35,8 @@ const RAINBOW_COLORS = [
   }
   if (token.kind === 'rainbow') {
     return (
-      <span
-        class="inline-flex"
-        style="filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.15))"
-        role="img"
-        aria-label={token.text}
-      >
+      <span class="inline-flex" style="filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.15))">
+        <span class="sr-only">{token.text}</span>
         {[...token.text].map((char, i) => (
           <span
             aria-hidden="true"

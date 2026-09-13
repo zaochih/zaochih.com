@@ -76,11 +76,7 @@ const siteControlsLabel: Record<Locale, string> = {
             class="inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-fg"
           >
             {item.icon && <Icon name={item.icon} class="h-3.5 w-auto" />}
-            {item.name && (
-              <span class="rounded border border-border-strong px-1 py-px font-mono text-[10px] leading-none text-fg-subtle">
-                {item.name}
-              </span>
-            )}
+            {item.name && <span class="sr-only">{item.name} </span>}
             <span>{item.text}</span>
           </a>
         </li>
