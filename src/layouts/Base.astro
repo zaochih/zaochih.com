@@ -41,11 +41,12 @@ const ogLocale = locale.replace('-', '_');
 
     <ClientRouter fallback="swap" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/google-sans-flex.woff2"
+      crossorigin
     />
     <script is:inline>
       (function () {
