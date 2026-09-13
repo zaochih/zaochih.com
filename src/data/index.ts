@@ -96,6 +96,12 @@ export const profile: Record<Locale, ProfileContent> = {
         text: '@zaochih',
       },
       {
+        icon: 'github',
+        alt: 'GitHub',
+        href: 'https://github.com/zaochih',
+        text: '@zaochih',
+      },
+      {
         icon: 'linkedin',
         alt: '领英',
         href: 'https://linkedin.com/in/caozhi-li',
@@ -156,6 +162,12 @@ export const profile: Record<Locale, ProfileContent> = {
         icon: 'twitter',
         alt: 'Twitter',
         href: 'https://x.com/zaochih',
+        text: '@zaochih',
+      },
+      {
+        icon: 'github',
+        alt: 'GitHub',
+        href: 'https://github.com/zaochih',
         text: '@zaochih',
       },
       {
@@ -220,6 +232,12 @@ export const profile: Record<Locale, ProfileContent> = {
         icon: 'twitter',
         alt: 'Twitter',
         href: 'https://x.com/zaochih',
+        text: '@zaochih',
+      },
+      {
+        icon: 'github',
+        alt: 'GitHub',
+        href: 'https://github.com/zaochih',
         text: '@zaochih',
       },
       {
