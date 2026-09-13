@@ -12,7 +12,13 @@ const brand = (
 ---
 
 {brand ? (
-  <svg viewBox={brand.viewBox} {...rest} set:html={brand.markup} />
+  <svg
+    viewBox={brand.viewBox}
+    aria-hidden="true"
+    focusable="false"
+    {...rest}
+    set:html={brand.markup}
+  />
 ) : (
   <svg
     viewBox="0 0 24 24"
@@ -21,6 +27,8 @@ const brand = (
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
     {...rest}
     set:html={ICONS[name as keyof typeof ICONS]}
   />
