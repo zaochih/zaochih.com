@@ -26,9 +26,9 @@ const langToggleLabel: Record<Locale, string> = {
 
 <div class="px-4.5 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-16">
   <div class="mb-12 flex items-center justify-between">
-    <span class="bg-[#0057b8] px-2 py-1 font-sans text-sm font-medium text-white">
+    <h1 class="bg-[#0057b8] px-2 py-1 font-sans text-sm font-medium text-white">
       {p.handle}
-    </span>
+    </h1>
     <div class="flex items-center gap-0.5">
       <LangToggle locale={locale} label={langToggleLabel[locale]} />
       <ThemeToggle label={themeToggleLabel[locale]} />
@@ -53,79 +53,81 @@ const langToggleLabel: Record<Locale, string> = {
     <RichText text={p.bio.template} />
   </div>
 
-  <div class="mt-7 flex flex-wrap items-center gap-2.5 text-[14.5px]">
-    {p.contact.map((item, i) => (
-      <>
-        {i > 0 && <span class="text-border-strong">/</span>}
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={item.alt}
-          class="inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-fg"
-        >
-          {item.icon && <Icon name={item.icon} class="h-3.5 w-auto" />}
-          {item.name && (
-            <span class="rounded border border-border-strong px-1 py-px font-mono text-[10px] leading-none text-fg-subtle">
-              {item.name}
-            </span>
-          )}
-          <span>{item.text}</span>
-        </a>
-      </>
-    ))}
-  </div>
+  <ul class="mt-7 flex flex-wrap items-center gap-2.5 text-[14.5px]">
+    {p.contact.map((item) => {
+      const accessibleText = item.href.startsWith('mailto:')
+        ? item.href.slice('mailto:'.length)
+        : item.text;
+      return (
+        <li class="flex items-center gap-x-2.5 not-first:before:text-border-strong not-first:before:content-['/']">
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${item.alt}: ${accessibleText}`}
+            class="inline-flex items-center gap-1.5 text-fg-muted no-underline hover:text-fg"
+          >
+            {item.icon && <Icon name={item.icon} class="h-3.5 w-auto" />}
+            {item.name && (
+              <span class="rounded border border-border-strong px-1 py-px font-mono text-[10px] leading-none text-fg-subtle">
+                {item.name}
+              </span>
+            )}
+            <span>{item.text}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
 </div>
 
 <section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
-  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+  <h2 class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
     {p.eyebrows.languages}
-  </div>
-  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
-    {p.languages.map((lang, i) => (
-      <>
-        {i > 0 && <span class="text-border-strong">/</span>}
+  </h2>
+  <ul class="flex flex-col gap-y-2 text-[15px] text-fg-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2.5">
+    {p.languages.map((lang) => (
+      <li class="flex items-center gap-x-2.5 sm:not-first:before:text-border-strong sm:not-first:before:content-['/']">
         <span class="inline-flex items-center gap-1.5">
           <span>{lang.name}</span>
-          <span class="text-border-strong">·</span>
-          <span>{lang.level}</span>
+          <span class="before:mr-1.5 before:text-border-strong before:content-['·']">
+            {lang.level}
+          </span>
         </span>
-      </>
+      </li>
     ))}
-  </div>
+  </ul>
 </section>
 
 <section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
-  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+  <h2 class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
     {p.eyebrows.tags}
-  </div>
-  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
-    {p.tags.map((tag, i) => (
-      <>
-        {i > 0 && <span class="text-border-strong">/</span>}
+  </h2>
+  <ul class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
+    {p.tags.map((tag) => (
+      <li class="flex items-center gap-x-2.5 not-first:before:text-border-strong not-first:before:content-['/']">
         <span class="inline-flex items-center">
           <RichText text={tag} />
         </span>
-      </>
+      </li>
     ))}
-  </div>
+  </ul>
 </section>
 
 <section class="border-t border-border px-4.5 py-5.5 sm:px-6 sm:py-7">
-  <div class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
+  <h2 class="mb-3.5 font-sans text-[11px] font-medium tracking-wide text-fg-subtle">
     {p.eyebrows.beento}
-  </div>
-  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
-    {p.beento.map((region, i) => (
-      <>
-        {i > 0 && <span class="text-border-strong">/</span>}
+  </h2>
+  <ul class="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[15px] text-fg-muted">
+    {p.beento.map((region) => (
+      <li class="flex items-center gap-x-2.5 not-first:before:text-border-strong not-first:before:content-['/']">
         <span>{region}</span>
-      </>
+      </li>
     ))}
-  </div>
+  </ul>
 </section>
 
-<footer class="border-t border-border px-4.5 py-8 pb-14 font-mono text-xs text-fg-subtle sm:px-6">
+<footer class="border-t border-border px-4.5 py-8 font-mono text-xs text-fg-subtle sm:px-6">
   <a
     href={p.footer.href}
     target="_blank"
