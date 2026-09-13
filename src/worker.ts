@@ -2,8 +2,8 @@
 // Cloudflare Worker in front of the static build (see wrangler.jsonc's
 // assets.run_worker_first: true — every request passes through here first).
 // Handles two things static assets alone can't:
-//   1. www.zaochih.com / zaochih.com / caozhi.li / www.caozhi.li / about.caozhi.li
-//      -> about.zaochih.com (host canonicalization)
+//   1. www.zaochih.com / zaochih.com / caozhi.li / www.caozhi.li / about.caozhi.li /
+//      about.zhih.dev -> about.zaochih.com (host canonicalization)
 //   2. "/" -> best-matching locale route, based on Accept-Language
 //
 // The host check only matches the literal legacy hostnames, not "anything
@@ -18,6 +18,7 @@ const REDIRECT_HOSTS = new Set([
   'caozhi.li',
   'www.caozhi.li',
   'about.caozhi.li',
+  'about.zhih.dev',
 ]);
 
 function pickLocale(acceptLanguage: string): SupportedLocale {
