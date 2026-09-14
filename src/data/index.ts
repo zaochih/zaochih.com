@@ -64,7 +64,7 @@ export const profile: Record<Locale, ProfileContent> = {
   'zh-CN': {
     documentTitle: '草纸',
     description:
-      '双非二本新工科大二学生，生于河南、长于重庆、现居福建，就读于三明学院计算机科学与技术专业。',
+      '双非二本新工科大二学生，生于河南、长于重庆、现居福建，计算机科学与技术专业。',
     handle: '@zaochih',
     eyebrows: {
       languages: '语言',
@@ -74,7 +74,7 @@ export const profile: Record<Locale, ProfileContent> = {
     tagline: '双非二本新工科大二学生',
     bio: {
       template:
-        '生于 <b>河南</b>，长于 <b>重庆</b>，现暂居 <b>福建</b>。就读于 <a href="https://www.fjsmu.edu.cn">三明学院</a>，计算机科学与技术专业。',
+        '生于 <b>河南</b>，长于 <b>重庆</b>，现暂居 <b>福建</b>。计算机科学与技术专业。',
     },
     contact: [
       {
@@ -141,7 +141,7 @@ export const profile: Record<Locale, ProfileContent> = {
   'zh-TW': {
     documentTitle: '草紙',
     description:
-      '不知名本科新工科大二學生，生於河南、長於重慶、現居福建，就讀於三明學院資訊工程專業。',
+      '不知名本科新工科大二學生，生於河南、長於重慶、現居福建，資訊工程專業。',
     handle: '@zaochih',
     eyebrows: {
       languages: '語言',
@@ -151,7 +151,7 @@ export const profile: Record<Locale, ProfileContent> = {
     tagline: '不知名本科新工科大二學生',
     bio: {
       template:
-        '生於 <b>河南</b>，長於 <b>重慶</b>，現暫居 <b>福建</b>。就讀於 <a href="https://www.fjsmu.edu.cn">三明學院</a>，資訊工程專業。',
+        '生於 <b>河南</b>，長於 <b>重慶</b>，現暫居 <b>福建</b>。資訊工程專業。',
     },
     contact: [
       {
@@ -212,7 +212,7 @@ export const profile: Record<Locale, ProfileContent> = {
   'en-US': {
     documentTitle: 'Zaochih',
     description:
-      'Second-year engineering undergraduate born in Henan, raised in Chongqing, now based in Fujian, China — studying Computer Science and Technology at Sanming University.',
+      'Second-year engineering undergraduate born in Henan, raised in Chongqing, now based in Fujian, China — studying Computer Science and Technology.',
     handle: '@zaochih',
     eyebrows: {
       languages: 'Languages',
@@ -223,7 +223,7 @@ export const profile: Record<Locale, ProfileContent> = {
       'Second-year undergraduate in engineering from a non-prestigious university',
     bio: {
       template:
-        'Born in <b>Henan</b>, raised in <b>Chongqing</b>, now based in <b>Fujian</b>, China. Studying <b>Computer Science and Technology</b> at <a href="https://www.fjsmu.edu.cn">Sanming University</a>.',
+        'Born in <b>Henan</b>, raised in <b>Chongqing</b>, now based in <b>Fujian</b>, China. Studying <b>Computer Science and Technology</b>.',
     },
     contact: [
       {
