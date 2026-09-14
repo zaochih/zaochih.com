@@ -3,6 +3,11 @@
   "name": "zaochih-com",
   "compatibility_date": "2026-09-13",
   "main": "src/worker.ts",
+  // Preview URLs default to matching workers_dev's value when unset, so
+  // this has to be explicit — otherwise disabling workers_dev below would
+  // silently take preview URLs down with it too.
+  "preview_urls": true,
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
