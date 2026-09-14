@@ -19,6 +19,11 @@ export interface Bio {
   template: string;
 }
 
+export interface EasterEgg {
+  /** Devtools console message — plain text, no rich-text tags. */
+  message: string;
+}
+
 export interface LanguageEntry {
   name: string;
   level: string;
@@ -48,6 +53,7 @@ export interface ProfileContent {
   };
   tagline: string;
   bio: Bio;
+  easterEgg: EasterEgg;
   contact: ContactLink[];
   languages: LanguageEntry[];
   tags: string[];
@@ -75,6 +81,10 @@ export const profile: Record<Locale, ProfileContent> = {
     bio: {
       template:
         '生于 <b>河南</b>，长于 <b>重庆</b>，现暂居 <b>福建</b>。计算机科学与技术专业。',
+    },
+    easterEgg: {
+      message:
+        '请等一下！这是一个开源项目。如果你对构建一个相似网页感兴趣，欢迎移步网页底部的 GitHub 仓库。',
     },
     contact: [
       {
@@ -153,6 +163,10 @@ export const profile: Record<Locale, ProfileContent> = {
       template:
         '生於 <b>河南</b>，長於 <b>重慶</b>，現暫居 <b>福建</b>。資訊工程專業。',
     },
+    easterEgg: {
+      message:
+        '請等一下！這是一個開源專案。如果你對打造類似的網頁感興趣，歡迎前往頁面底部的 GitHub 儲存庫看看。',
+    },
     contact: [
       {
         icon: 'mail',
@@ -224,6 +238,10 @@ export const profile: Record<Locale, ProfileContent> = {
     bio: {
       template:
         'Born in <b>Henan</b>, raised in <b>Chongqing</b>, now based in <b>Fujian</b>, China. Studying <b>Computer Science and Technology</b>.',
+    },
+    easterEgg: {
+      message:
+        "Wait a second! This is an open source project. If you're interested in building something similar, check out the GitHub repo linked at the bottom of the page.",
     },
     contact: [
       {

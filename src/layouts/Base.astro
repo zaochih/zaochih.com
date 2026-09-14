@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import ClientRouter from 'astro/components/ClientRouter.astro';
-import { LOCALES, SITE_URL, type Locale } from '../data';
+import ConsoleEasterEgg from '../components/ConsoleEasterEgg.astro';
+import { LOCALES, SITE_URL, profile, type Locale } from '../data';
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,7 @@ interface Props {
 const { locale, title, description } = Astro.props;
 const canonicalUrl = `${SITE_URL}/${locale}/`;
 const ogLocale = locale.replace('-', '_');
+const { easterEgg } = profile[locale];
 ---
 
 <!doctype html>
@@ -22,11 +24,9 @@ const ogLocale = locale.replace('-', '_');
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    {
-      LOCALES.map((l) => (
-        <link rel="alternate" hreflang={l} href={`${SITE_URL}/${l}/`} />
-      ))
-    }
+    {LOCALES.map((l) => (
+      <link rel="alternate" hreflang={l} href={`${SITE_URL}/${l}/`} />
+    ))}
     <link rel="alternate" hreflang="x-default" href={`${SITE_URL}/`} />
 
     <meta property="og:type" content="website" />
@@ -53,6 +53,7 @@ const ogLocale = locale.replace('-', '_');
         }
       })();
     </script>
+    <ConsoleEasterEgg message={easterEgg.message} />
   </head>
   <body class="font-sans">
     <main class="mx-auto max-w-180">

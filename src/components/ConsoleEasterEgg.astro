@@ -1,0 +1,15 @@
+---
+interface Props {
+  message: string;
+}
+
+const { message } = Astro.props;
+---
+
+<script is:inline define:vars={{ message }}>
+  console.clear();
+  console.log(
+    `%c${message}`,
+    'background:#0057b8;color:#fff;font-size:13px;line-height:1.7;padding:10px 14px;border-radius:6px;',
+  );
+</script>

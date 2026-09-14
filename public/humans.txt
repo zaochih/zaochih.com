@@ -1,0 +1,5 @@
+Although most of the code of this profile page was written by Claude Sonnet 5, none of this would have been possible without the power of Open Source. Thanks to Astro, the framework that powers this site, Tailwind CSS, the style library we are using, and tens of thousands of open source projects that shaped AI's training data. A world built on the shoulders of those who came before.
+
+This website is also an open source project. You can contribute to it at https://github.com/zaochih/zaochih.com.
+
+I'm open to work. Feel free to drop me a note at hi@zaochih.com.
