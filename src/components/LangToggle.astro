@@ -18,7 +18,7 @@ const { locale, label } = Astro.props;
     <Icon name="globe" class="h-3.25 w-3.25" />
     <span>{LOCALE_LABELS[locale]}</span>
   </summary>
-  <div class="absolute right-0 top-full z-10 mt-1 flex min-w-28 flex-col gap-0.5 rounded-lg border border-border bg-bg p-1 shadow-lg shadow-black/10">
+  <div class="dropdown-panel absolute right-0 top-full z-10 mt-1 flex min-w-28 flex-col gap-0.5 rounded-lg border border-border bg-bg p-1 shadow-lg shadow-black/10">
     {LOCALES.map((l) => (
       <a
         href={`/${l}/`}
@@ -35,18 +35,51 @@ const { locale, label } = Astro.props;
 </details>
 
 <script>
+  // Play the exit animation (`.closing`, see global.css), then actually
+  // close the <details>. The timeout is a backstop in case `animationend`
+  // never fires (e.g. the panel is hidden mid-animation).
+  function closeAnimated(details: HTMLDetailsElement) {
+    if (!details.open || details.classList.contains('closing')) return;
+    const panel = details.querySelector<HTMLElement>('.dropdown-panel');
+    if (
+      !panel ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      details.open = false;
+      return;
+    }
+    details.classList.add('closing');
+    const finish = () => {
+      clearTimeout(fallback);
+      details.classList.remove('closing');
+      details.open = false;
+    };
+    const fallback = setTimeout(finish, 300);
+    panel.addEventListener('animationend', finish, { once: true });
+  }
+
   // Re-query on every click rather than capturing `details` once: this
   // script's content is identical on every locale page, so Astro's view
   // transitions only run it a single time (see the comment in
   // ThemeToggle.astro), and a captured reference would go stale after the
   // first client-side navigation.
   document.addEventListener('click', (event) => {
-    const target = event.target as Node;
+    const target = event.target as Element;
+
+    // A click on an open menu's own <summary> would close it natively
+    // (instantly); route it through closeAnimated instead.
+    const summary = target.closest('summary');
+    const own = summary?.parentElement;
+    if (own instanceof HTMLDetailsElement && own.open) {
+      event.preventDefault();
+      closeAnimated(own);
+    }
+
     for (const details of document.querySelectorAll<HTMLDetailsElement>(
       'details',
     )) {
       if (details.open && !details.contains(target)) {
-        details.open = false;
+        closeAnimated(details);
       }
     }
   });

@@ -27,7 +27,7 @@ This is a static personal profile site built with Astro. The project uses:
 - `src/pages/zh-CN/index.astro`, `src/pages/zh-TW/index.astro`, `src/pages/en-US/index.astro` - one static page per locale
 - `src/pages/index.astro` - `/` root: client-side redirect to the browser's preferred locale, with a no-JS link fallback (used locally and on non-Vercel hosts)
 - `middleware.ts` - Vercel Edge Middleware: redirects `/` to the best-matching locale based on the `Accept-Language` header, before any static file is served (the primary path in production; `src/pages/index.astro` is the fallback)
-- `src/styles/global.css` - Tailwind entrypoint + theme CSS variables (`--bg`, `--fg`, etc.) switched via `[data-theme]` / `prefers-color-scheme`, plus the `.rich-link` hover effect and the `::details-content` dropdown transition
+- `src/styles/global.css` - Tailwind entrypoint + theme CSS variables (`--bg`, `--fg`, etc.) switched via `[data-theme]` / `prefers-color-scheme`, plus the `.rich-link` hover effect and the dropdown open/close animation (`.dropdown-panel`; the close half is driven by `LangToggle.astro`'s script)
 
 ### Key Features
 

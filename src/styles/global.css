@@ -101,31 +101,40 @@ body {
   outline-offset: 2px;
 }
 
-/* Crossfade the language-switcher dropdown open/close instead of the native
-   instant show/hide. `::details-content` is the platform-native hook for
-   this (no built-in way to animate a <details> otherwise); unsupported
-   browsers just ignore this rule and keep the instant toggle, so this is a
-   pure progressive enhancement. */
-details::details-content {
-  opacity: 0;
-  transform: scale(0.96) translateY(-4px);
+/* Animate the language-switcher dropdown both ways instead of the native
+   instant show/hide. Opening is a plain keyframe entrance on the panel.
+   Closing can't be done in CSS alone: the native toggle hides the content
+   immediately, and transitioning `::details-content` out relies on
+   `allow-discrete` support that Safari lacks (it opened animated but closed
+   instantly). So LangToggle.astro's script adds `.closing`, waits for the
+   exit animation, then closes the <details>. */
+details[open] > .dropdown-panel {
   transform-origin: top right;
-  transition:
-    opacity 150ms ease,
-    transform 150ms ease,
-    content-visibility 150ms allow-discrete;
-  content-visibility: hidden;
+  animation: dropdown-in 150ms ease;
 }
 
-details[open]::details-content {
-  opacity: 1;
-  transform: none;
-  content-visibility: visible;
+details.closing > .dropdown-panel {
+  animation: dropdown-out 120ms ease forwards;
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+}
+
+@keyframes dropdown-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  details::details-content {
-    transition: none;
+  details[open] > .dropdown-panel,
+  details.closing > .dropdown-panel {
+    animation: none;
   }
 }
 
