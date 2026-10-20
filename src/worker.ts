@@ -31,13 +31,16 @@ type SupportedLocale = 'zh-CN' | 'zh-TW' | 'en-US';
 const CANONICAL_HOST = 'about.zaochih.com';
 
 const WKD_HOST = 'zaochih.com';
+const WKD_ADVANCED_HOST = 'openpgpkey.zaochih.com';
+const WKD_ADVANCED_PREFIX = '/.well-known/openpgpkey/zaochih.com/';
 
 // Exact allowlist of files served on the bare host (path -> content type):
 // the (empty) WKD policy file plus one hu/ entry per UID on the key (hi@,
 // git@, me@ — hashes from `gpg --list-keys --with-wkd-hash`), the armored
-// public key, gpc.json, traffic-advice and the Thunderbird autoconfig. Adding an alias means
-// adding its hash here and in public/.well-known. security.txt is managed by
-// Cloudflare, not served from here.
+// public key, gpc.json, traffic-advice and the Thunderbird autoconfig.
+// Adding an alias means adding its hash here and in public/.well-known.
+// security.txt is managed by Cloudflare, not served from here. The
+// openpgpkey.zaochih.com host reuses only the openpgpkey/ entries.
 const WELL_KNOWN_FILES = new Map([
   ['/.well-known/openpgpkey/policy', 'application/octet-stream'],
   [
@@ -126,6 +129,22 @@ interface Env {
   ASSETS: Fetcher;
 }
 
+async function serveWellKnown(
+  env: Env,
+  request: Request,
+  path: string,
+  type: string,
+): Promise<Response> {
+  const file = await env.ASSETS.fetch(
+    new Request(new URL(path, request.url), request),
+  );
+  if (file.status !== 200) return file;
+  const headers = new Headers(file.headers);
+  headers.set('content-type', type);
+  headers.set('access-control-allow-origin', '*');
+  return new Response(file.body, { status: 200, headers });
+}
+
 export default {
   async fetch(request, env): Promise<Response> {
     const url = new URL(request.url);
@@ -141,12 +160,32 @@ export default {
         ? WELL_KNOWN_FILES.get(url.pathname)
         : undefined;
     if (wellKnownType) {
-      const file = await env.ASSETS.fetch(request);
-      if (file.status !== 200) return file;
-      const fileHeaders = new Headers(file.headers);
-      fileHeaders.set('content-type', wellKnownType);
-      fileHeaders.set('access-control-allow-origin', '*');
-      return new Response(file.body, { status: 200, headers: fileHeaders });
+      return serveWellKnown(env, request, url.pathname, wellKnownType);
+    }
+
+    // WKD advanced method, served from its own openpgpkey.zaochih.com host
+    // (GnuPG tries this one first). The URL carries the domain as an extra
+    // path segment — /.well-known/openpgpkey/zaochih.com/hu/<hash> — which is
+    // stripped to reuse the same files and allowlist as the direct method.
+    // Everything else on this host is a hard 404: once the host resolves,
+    // GnuPG does not fall back to the direct method, so it must never answer
+    // with anything but a key or a 404.
+    if (url.hostname === WKD_ADVANCED_HOST) {
+      const path = url.pathname.startsWith(WKD_ADVANCED_PREFIX)
+        ? `/.well-known/openpgpkey/${url.pathname.slice(WKD_ADVANCED_PREFIX.length)}`
+        : '';
+      const type = WELL_KNOWN_FILES.get(path);
+      if (!type) return new Response('Not Found', { status: 404 });
+      return serveWellKnown(env, request, path, type);
+    }
+
+    // Any other WKD lookup (an address with no key here) is a plain 404 — a
+    // redirect to about.zaochih.com would just add a hop to the same answer.
+    if (
+      url.hostname === WKD_HOST &&
+      url.pathname.startsWith('/.well-known/openpgpkey/')
+    ) {
+      return new Response('Not Found', { status: 404 });
     }
 
     if (PERMANENT_REDIRECT_HOSTS.has(url.hostname)) {
