@@ -30,6 +30,34 @@ type SupportedLocale = 'zh-CN' | 'zh-TW' | 'en-US';
 
 const CANONICAL_HOST = 'about.zaochih.com';
 
+const WKD_HOST = 'zaochih.com';
+
+// Exact allowlist of files served on the bare host (path -> content type):
+// the (empty) WKD policy file plus one hu/ entry per UID on the key (hi@,
+// git@, me@ — hashes from `gpg --list-keys --with-wkd-hash`), the armored
+// public key, gpc.json, traffic-advice and the Thunderbird autoconfig. Adding an alias means
+// adding its hash here and in public/.well-known. security.txt is managed by
+// Cloudflare, not served from here.
+const WELL_KNOWN_FILES = new Map([
+  ['/.well-known/openpgpkey/policy', 'application/octet-stream'],
+  [
+    '/.well-known/openpgpkey/hu/aeii9rmagouy1owpp7e5ftpxjof7h41n',
+    'application/octet-stream',
+  ],
+  [
+    '/.well-known/openpgpkey/hu/e5a4bxki1ktx1jncwco5nkcofedmkxod',
+    'application/octet-stream',
+  ],
+  [
+    '/.well-known/openpgpkey/hu/s8y7oh5xrdpu9psba3i5ntk64ohouhga',
+    'application/octet-stream',
+  ],
+  ['/.well-known/pgp-key.asc', 'text/plain; charset=utf-8'],
+  ['/.well-known/gpc.json', 'application/json'],
+  ['/.well-known/traffic-advice', 'application/trafficadvice+json'],
+  ['/.well-known/autoconfig/mail/config-v1.1.xml', 'application/xml'],
+]);
+
 const PERMANENT_REDIRECT_HOSTS = new Set(['about.caozhi.li', 'about.zhih.dev']);
 
 const TEMPORARY_REDIRECT_HOSTS = new Set([
@@ -101,6 +129,25 @@ interface Env {
 export default {
   async fetch(request, env): Promise<Response> {
     const url = new URL(request.url);
+
+    // Well-known files (WKD direct method, armored key, gpc.json): must be
+    // answered on the bare zaochih.com host itself, before the host redirect
+    // below — clients look up e.g.
+    // https://zaochih.com/.well-known/openpgpkey/hu/<hash> and should not be
+    // bounced to about.zaochih.com. WKD clients expect raw binary keys, and
+    // browser-based ones need CORS.
+    const wellKnownType =
+      url.hostname === WKD_HOST
+        ? WELL_KNOWN_FILES.get(url.pathname)
+        : undefined;
+    if (wellKnownType) {
+      const file = await env.ASSETS.fetch(request);
+      if (file.status !== 200) return file;
+      const fileHeaders = new Headers(file.headers);
+      fileHeaders.set('content-type', wellKnownType);
+      fileHeaders.set('access-control-allow-origin', '*');
+      return new Response(file.body, { status: 200, headers: fileHeaders });
+    }
 
     if (PERMANENT_REDIRECT_HOSTS.has(url.hostname)) {
       url.hostname = CANONICAL_HOST;
